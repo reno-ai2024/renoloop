@@ -41,8 +41,8 @@ put your proxy in file `proxy.txt` format `http://username:pass@ip:port`
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/Zlkcyber/openloop.git
-   cd openloop
+   git clone https://github.com/reno-ai2024/renoloop.git
+   cd renoloop
    ```
 2. Install dependencies:
    ```bash
