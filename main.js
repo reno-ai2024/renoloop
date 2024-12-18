@@ -6,6 +6,8 @@ import { banner } from './utils/banner.js';
 import { logger } from './utils/logger.js';
 import getToken from './getToken.js';
 
+let intervalId; // Declare intervalId at the top so it is accessible globally.
+
 const getRandomQuality = () => {
     return Math.floor(Math.random() * (99 - 60 + 1)) + 60;
 };
@@ -79,7 +81,7 @@ const checkMissions = async (token, proxy) => {
 
         if (response.status === 401) {
             logger('Token is expired. Trying to get a new token...', 'warn');
-            clearInterval(intervalId);
+            clearInterval(intervalId); // Clear interval on token expiration.
 
             await getToken();
             restartInterval();
@@ -94,6 +96,10 @@ const checkMissions = async (token, proxy) => {
     } catch (error) {
         logger('Error Fetching Missions!', 'error', error);
     }
+};
+
+const restartInterval = () => {
+    intervalId = setInterval(shareBandwidthForAllTokens, 60 * 1000);
 };
 
 const shareBandwidthForAllTokens = async () => {
@@ -159,7 +165,7 @@ const main = () => {
     logger('Starting bandwidth sharing each minute...');
     shareBandwidthForAllTokens();
 
-    intervalId = setInterval(shareBandwidthForAllTokens, 60 * 1000);
+    intervalId = setInterval(shareBandwidthForAllTokens, 60 * 1000); // Use the globally declared intervalId.
 };
 
 main();
