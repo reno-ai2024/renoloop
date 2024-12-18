@@ -48,15 +48,19 @@ put your proxy in file `proxy.txt` format `http://username:pass@ip:port`
    ```bash
    npm install
    ```
-3. Setup to create accounts and get Tokens:
+3. Install socks support:
+   ```bash
+   npm install socks-proxy-agent
+   ```
+4. Setup to create accounts and get Tokens:
    ```bash
    npm run setup
    ```
-4. Run The Script:
+5. Run The Script:
    ```bash
    npm run start
    ```
-5. Auto reff using temp mail
+6. Auto reff using temp mail
    ```bash
    npm run autoreff
    ```
